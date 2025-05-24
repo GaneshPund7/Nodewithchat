@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Chat</title>
+    <style>
+      ul { list-style-type: none; padding: 0; }
+      li { padding: 8px 16px; border-bottom: 1px solid #ccc; }
+      input { padding: 8px; }
+      button { padding: 8px 12px; }
+    </style>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+
+      socket.on('connect', () => {
+        console.log('Connected to server');
+      });
+
+      function sendMessage() {
+        const input = document.getElementById('m');
+        const msg = input.value;
+        if (msg.trim() !== '') {
+          socket.emit('chat message', msg);
+          input.value = '';
+        }
+      }
+
+      socket.on('chat message', (msg) => {
+        const item = document.createElement('li');
+        item.textContent = msg;
+        document.getElementById('messages').appendChild(item);
+      });
+
+      document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('m').addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') sendMessage();
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h2>Socket.io Chat</h2>
+    <ul id="messages"></ul>
+    <input id="m" autocomplete="off" placeholder="Type your message..." />
+    <button onclick="sendMessage()">Send</button>
+  </body>
+</html>
