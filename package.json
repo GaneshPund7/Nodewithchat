@@ -9,10 +9,19 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "socket.io": "^4.8.1"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GaneshPund7/Nodewithchat.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GaneshPund7/Nodewithchat/issues"
+  },
+  "homepage": "https://github.com/GaneshPund7/Nodewithchat#readme",
+  "description": ""
 }
