@@ -1,6 +1,7 @@
 
 const { DataTypes } = require('sequelize');
-const sequelize = require('../db/db');
+const sequelize = require('../../utils/db/db');
+// const sequelize = require('../db/db');
 
 const Message = sequelize.define('Message', {
     senderId: {
@@ -29,5 +30,5 @@ const Message = sequelize.define('Message', {
 
 });
 
-
+Message.sync({alter: true})
 module.exports = Message;

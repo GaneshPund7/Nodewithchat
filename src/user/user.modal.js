@@ -1,5 +1,5 @@
-const {DataTypes } = require('sequelize');
-const sequelize = require('../db/db');
+const { DataTypes } = require('sequelize');
+const sequelize = require('../../utils/db/db'); 
 
 const User = sequelize.define('User',{
     name: {
@@ -18,11 +18,13 @@ const User = sequelize.define('User',{
         type: DataTypes.INTEGER
     }
 }, {
-    tableName: 'user',
+    tableName: 'users',
     timestamps: false
 });
 
-// User.associate = (models)=>{
-//    User.belongsToMany(models.Role, { through: 'Permission', foreignKey:"UserId", primaryKey:"UserId"});
-// }
+User.associate = (models)=>{
+
+   User.belongsTo(models.Role, { foreignKey:"RoleId"});
+}
+User.sync({alter:true})
 module.exports = User
